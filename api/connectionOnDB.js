@@ -4,16 +4,16 @@ const mongoose = require('mongoose');
 
 const config = require('./config');
 
-module.exports = () => {
+module.exports = async () => {
    try {
-      const connectDB = mongoose.connect(config.mongodbUrl, {
+      const connectDB = await mongoose.connect(config.mongodbUrl, {
          useNewUrlParser: true,
          useUnifiedTopology: true,
          useFindAndModify: true,
       });
 
       if (connectDB) {
-         console.log('\x1b[33m%s\x1b[0m', 'Database connection successful');
+         console.log('\x1b[33m%s\x1b[0m', '>>> Database connection successful');
       }
    } catch (error) {
       const err = new Error('Not connect db');

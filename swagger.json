@@ -19,13 +19,13 @@
       }
    ],
    "paths": {
-      "/auth/register": {
-         "post": {
-            "tags": ["Auth"],
-            "summary": "User registration",
+      "/": {
+         "get": {
+            "tags": ["List bikes"],
+            "summary": "List bike",
             "parameters": [],
             "requestBody": {
-               "description": "Registration's object",
+               "description": "Get list bikes",
                "required": true,
                "content": {
                   "application/json": {
@@ -36,27 +36,19 @@
                }
             },
             "responses": {
-               "201": {
+               "200": {
                   "description": "Created",
-                  "content": {}
-               },
-               "400": {
-                  "description": "Bad request (invalid request body)",
-                  "content": {}
-               },
-               "409": {
-                  "description": "Provided email already exists",
-                  "content": {}
+                  "content": {
+                     "name": "",
+                     "time": "",
+                     "rent": 0,
+                     "typeBike": "",
+                     "hire": false,
+                     "id": ""
+                  }
                }
             }
          }
-   },
-   "securitySchemes": {
-      "Bearer": {
-         "type": "http",
-         "scheme": "bearer",
-         "bearerFormat": "JWT"
       }
-   }
    }
 }
