@@ -1,14 +1,9 @@
 'use strict';
 
 const request = require('supertest');
-const jwt = require('jsonwebtoken');
 
-const SlimMomServer = require('../../api/server');
+const TTSBack = require('../../api/server');
 const userModel = require('../../api/models/user.model');
-const dayModel = require('../../api/models/day.model');
-
-const config = require('../../api/config');
-const { jwtSecret } = config;
 
 describe('\n\n Acceptance tests router', () => {
    let server;
@@ -21,21 +16,10 @@ describe('\n\n Acceptance tests router', () => {
    };
 
    before(async () => {
-      server = new SlimMomServer().start();
+      server = new TTSBack().start();
    });
 
-   after(async () => {
-      const { email } = testUser;
-
-      const { days } = await userModel.findOneAndDelete({ email });
-
-      await dayModel.findByIdAndDelete(days[0].id);
-
-      server.close(() => {
-         process.exit(0);
-      });
-      console.log('\x1b[35m%s\x1b[0m', 'Server stopped');
-   });
+   after(async () => {});
 
    describe('\n Acceptance tests auth.router', () => {
       describe('POST /auth/register', () => {
@@ -67,7 +51,11 @@ describe('\n\n Acceptance tests router', () => {
             await request(server)
                .post('/auth/register')
                .set('Content-Type', 'application/json')
-               .send({ name: 'test', email: 'test@mail.com', password: 'password_hash' })
+               .send({
+                  name: 'test',
+                  email: 'test@mail.com',
+                  password: 'password_hash',
+               })
                .expect(201);
          });
       });
@@ -166,20 +154,6 @@ describe('\n\n Acceptance tests router', () => {
          desiredWeight: 60,
          bloodType: 3,
       };
-
-      before(async () => {
-         const { email } = testUser;
-
-         createdUser = await userModel.findOne({ email });
-
-         const { _id } = createdUser;
-
-         token = jwt.sign({ id: _id }, jwtSecret);
-
-         await userModel.updateAccessToken(_id, token);
-
-         authorizationHeader = `Bearer ${token}`;
-      });
 
       describe('\n Acceptance tests daily-rate.router', () => {
          const badBody = {
