@@ -1,5 +1,5 @@
 'use strict';
 
-const SlimMomServer = require('./server');
+const TTSBack = require('./server');
 
-new SlimMomServer().start();
+new TTSBack().start();
