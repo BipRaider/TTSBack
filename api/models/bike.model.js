@@ -31,6 +31,7 @@ bikeSchema.statics.getBikes = getBikes;
 bikeSchema.statics.updateBikeHire = updateBikeHire;
 bikeSchema.statics.findBikeByID = findBikeByID;
 bikeSchema.statics.removeBike = removeBike;
+bikeSchema.statics.findData = findData;
 
 async function getBikes() {
    return await this.find();
@@ -41,11 +42,15 @@ async function findBikeByID(_id) {
 }
 
 async function updateBikeHire(id, hire) {
-   return await this.findOneAndUpdate(id, { hire }, { new: true });
+   return await this.findByIdAndUpdate(id, { hire }, { new: true });
 }
 
 async function removeBike(_id) {
    return await this.deleteOne({ _id });
+}
+
+async function findData(name, value) {
+   return await this.find({ [name]: value });
 }
 
 const bikeModel = mongoose.model('Bike', bikeSchema);

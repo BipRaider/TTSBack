@@ -16,7 +16,7 @@ module.exports = async ({ id }) => {
 
       const bike = await bikeModel.updateBikeHire(id, !_doc.hire);
 
-      return bike._doc.hire;
+      return { hire: bike._doc.hire, id: id };
    } catch (error) {
       throw error;
    }

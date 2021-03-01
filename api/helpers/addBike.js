@@ -14,7 +14,10 @@ module.exports = async data => {
          ...data,
       });
 
-      return { massages: `Your bike ${newBike._doc.name} added register ` };
+      return {
+         massages: `Your bike ${newBike._doc.name} added register `,
+         bike: { ...newBike },
+      };
    } catch (error) {
       throw error;
    }

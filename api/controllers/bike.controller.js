@@ -1,6 +1,6 @@
 'use strict';
 
-const { addBike, getBikes, changeHireBike, deleteBike } = require('../helpers');
+const { addBike, getBikes, changeHireBike, deleteBike, getListBikesHired } = require('../helpers');
 
 module.exports = class BikeController {
    static async getBike(req, res, next) {
@@ -12,6 +12,17 @@ module.exports = class BikeController {
          next(error);
       }
    }
+
+   static async getListBikesHired(req, res, next) {
+      try {
+         const listBikesHire = await getListBikesHired(req.body);
+
+         return res.status(200).json(listBikesHire);
+      } catch (error) {
+         next(error);
+      }
+   }
+
    static async addBike(req, res, next) {
       try {
          const bike = await addBike(req.body);
