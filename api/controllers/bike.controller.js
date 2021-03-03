@@ -15,7 +15,7 @@ module.exports = class BikeController {
 
    static async getListBikesHired(req, res, next) {
       try {
-         const listBikesHire = await getListBikesHired(req.body);
+         const listBikesHire = await getListBikesHired(req.query);
 
          return res.status(200).json(listBikesHire);
       } catch (error) {

@@ -26,7 +26,7 @@ module.exports = class ValidatorBike {
          hire: Joi.boolean().required(),
       });
 
-      const val = validationRules.validate(req.body);
+      const val = validationRules.validate(req.query);
 
       if (val.error) {
          const err = new Error('Invalid request body');
