@@ -1,6 +1,7 @@
 'use strict';
 
 const bikeModel = require('../models/bike.model');
+const prepareBikesResponse = require('./prepareBikesResponse');
 
 module.exports = async data => {
    try {
