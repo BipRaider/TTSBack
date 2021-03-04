@@ -42,7 +42,10 @@ module.exports = class ValidatorBike {
          id: Joi.string().required(),
       });
 
-      const val = validationRules.validate(req.body);
+      const val =
+         req.body.id === undefined
+            ? validationRules.validate(req.query)
+            : validationRules.validate(req.body);
 
       if (val.error) {
          const err = new Error('Invalid request body');
@@ -50,8 +53,7 @@ module.exports = class ValidatorBike {
          throw err;
       }
 
-      const { id } = req.body;
-      checkedId(id);
+      checkedId(val.value.id);
       next();
    }
 };

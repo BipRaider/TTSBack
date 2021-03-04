@@ -26,6 +26,7 @@ module.exports = class BikeController {
    static async addBike(req, res, next) {
       try {
          const bike = await addBike(req.body);
+
          return res.status(201).json(bike);
       } catch (error) {
          next(error);
@@ -35,6 +36,7 @@ module.exports = class BikeController {
    static async changeBike(req, res, next) {
       try {
          const bike = await changeHireBike(req.body);
+
          return res.status(201).json(bike);
       } catch (error) {
          next(error);
@@ -43,7 +45,7 @@ module.exports = class BikeController {
 
    static async deleteBike(req, res, next) {
       try {
-         await deleteBike(req.body);
+         await deleteBike(req.query);
 
          return res.status(201).end();
       } catch (error) {
