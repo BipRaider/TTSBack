@@ -5,7 +5,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 
 const router = require('./router');
-const connectionOnDB = require('./connectionOnDB');
+const { connectionOnDB } = require('./data');
 const config = require('./config');
 
 module.exports = class TTSBack {

@@ -1,6 +1,6 @@
 'use strick';
 
-const bikeModel = require('../models/bike.model');
+const bikeModel = require('../data/bike.model');
 
 module.exports = async ({ id }) => {
    try {

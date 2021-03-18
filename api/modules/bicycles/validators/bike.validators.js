@@ -2,7 +2,7 @@
 
 const Joi = require('joi');
 
-const { checkedId } = require('../helpers');
+const { checkedId } = require('../../../helpers');
 
 module.exports = class ValidatorBike {
    static validateBike(req, res, next) {
@@ -21,6 +21,7 @@ module.exports = class ValidatorBike {
       }
       next();
    }
+
    static validateBikesHire(req, res, next) {
       const validationRules = Joi.object({
          hire: Joi.boolean().required(),

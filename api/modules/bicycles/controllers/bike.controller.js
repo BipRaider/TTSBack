@@ -1,18 +1,8 @@
 'use strict';
 
-const { addBike, getBikes, changeHireBike, deleteBike, getListBikesHired } = require('../helpers');
+const { addBike, changeHireBike, deleteBike, getListBikesHired } = require('../models');
 
 module.exports = class BikeController {
-   static async getBike(req, res, next) {
-      try {
-         const listBikes = await getBikes();
-
-         return res.status(200).json(listBikes);
-      } catch (error) {
-         next(error);
-      }
-   }
-
    static async getListBikesHired(req, res, next) {
       try {
          const listBikesHire = await getListBikesHired(req.query);
