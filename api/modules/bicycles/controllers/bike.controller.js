@@ -1,6 +1,6 @@
 'use strict';
 
-const { addBike, changeHireBike, deleteBike, getListBikesHired } = require('../models');
+const { addBike, changeHireBike, deleteBike, getListBikesHired } = require('../handlers');
 
 module.exports = class BikeController {
    static async getListBikesHired(req, res, next) {
